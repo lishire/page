@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #content{
+            width: 1200px;
+            height: 50px;
+            margin: auto;
+        }
+        a{
+            width: 100px;
+            height: 50px;
+            border: 1px solid darkgray;
+            margin-left: 20px;
+            font-size: 32px;
+            cursor: pointer;
+        }
+
+        a:hover{
+            color: blue;
+        }
+        span{
+            width: 100px;
+            height: 50px;
+            font-size: 32px;
+            margin-left: 18px;
+            color: darkgreen;
+
+        }
+    </style>
+
+</head>
+<body>
+<div id="content"></div>
+<script>
+//    window.onload=function(){
+        var total=15;
+        function page(currpage){
+            var html="";
+            var num=currpage-3;
+            var resnum=currpage+3;
+            if(num<=1){
+                num=1;
+                resnum=total+1;
+                if(resnum>=9){
+                    resnum=9;
+                }
+            }
+            if(resnum>total){
+                resnum=total+1;
+            }
+            if(currpage>1){
+                html+='<a onclick="page('+(currpage-1)+')"  class="left">上一页</a>';
+            }
+            for(var i=num;i<resnum;i++){
+                if(currpage==i){
+                    html+='<span onclick="page('+i+')">'+i+'</span>';
+                }
+                else{
+                    html+='<a onclick="page('+i+')">'+i+'</a>'
+                }
+            }
+            if(currpage<total){
+                html+='<a onclick="page('+(currpage+1)+')"  class="right">下一页</a>';
+            }
+            document.getElementById("content").innerHTML=html;
+        }
+        window.onload=function(){
+            page(0);
+        }
+//    }
+</script>
+</body>
+</html>
